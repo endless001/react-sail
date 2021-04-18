@@ -147,9 +147,6 @@ const App = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(!open);
-  };
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -159,7 +156,7 @@ const App = () => {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onClick={()=>setOpen(!open)}
           >
             <MenuIcon />
           </IconButton>
