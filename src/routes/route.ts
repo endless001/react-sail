@@ -2,6 +2,7 @@ import { lazy } from "react";
 import { BasicLayout } from "layouts/basic-layout";
 import { UserLayout } from "layouts/user-layout";
 import { LoginScreen } from "screens/user/login";
+import { RegisterScreen } from "screens/user/register";
 import { IRouteProps } from "routes";
 
 const routes: IRouteProps[] = [
@@ -10,12 +11,12 @@ const routes: IRouteProps[] = [
     component: UserLayout,
     children: [
       {
-        path: "/user/signin",
+        path: "/user/login",
         component: LoginScreen,
       },
       {
-        path: "/user/signup",
-        component: LoginScreen,
+        path: "/user/register",
+        component: RegisterScreen,
       },
     ],
   },

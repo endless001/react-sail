@@ -8,7 +8,6 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import FormControl from "@material-ui/core/FormControl";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { Copyright } from "components/copyright";
@@ -17,6 +16,7 @@ import Container from "@material-ui/core/Container";
 import { useAuth } from "context/auth-context";
 import { useAsync } from "utils/use-async";
 import { useDispatch } from "react-redux";
+import {useForm} from "react-hook-form";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,6 +48,18 @@ export const LoginScreen = ({
   const { login, user } = useAuth();
   const { run, isLoading } = useAsync(undefined, { throwOnError: true });
   const dispatch = useDispatch();
+  const handleSubmit = async () => {
+    try {
+      console.log('aaa')
+      var values={
+        username:"lq",
+        password:"lq"
+      };
+      await run(login(values));
+    } catch (e) {
+      onError(e);
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,7 +71,7 @@ export const LoginScreen = ({
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <FormControl className={classes.form}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -106,7 +118,7 @@ export const LoginScreen = ({
               </Link>
             </Grid>
           </Grid>
-        </FormControl>
+        </form>
       </div>
       <Box mt={8}>
         <Copyright />
