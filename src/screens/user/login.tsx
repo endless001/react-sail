@@ -18,10 +18,6 @@ import { useAuth } from "context/auth-context";
 import { useAsync } from "utils/use-async";
 import { useDispatch } from "react-redux";
 
-interface LoginForm extends React.FormEvent{
-   username:string;
-   password:string;
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,20 +42,13 @@ const useStyles = makeStyles((theme) => ({
 export const LoginScreen = ({ onError,}: {
   onError: (error: Error) => void;
 }) => {
+
   const classes = useStyles();
 
   const { login, user } = useAuth();
   const { run, isLoading } = useAsync(undefined, { throwOnError: true });
   const dispatch = useDispatch();
 
-  // HTMLFormElement extends Element
-  const handleSubmit =(e: LoginForm) => {
-    try {
-
-    } catch (e) {
-      onError(e);
-    }
-  };
 
   return (
     <Container component="main" maxWidth="xs">
