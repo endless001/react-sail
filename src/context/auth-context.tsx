@@ -1,20 +1,17 @@
-import React,{ReactNode,useCallback} from "react";
+import React, { ReactNode, useCallback } from "react";
 import * as auth from "auth-provider";
 import { User } from "types/user";
 import { http } from "utils/http";
 import * as authStore from "store/auth";
 import { bootstrap, selectUser } from "store/auth";
-import {useAsync} from "utils/use-async";
-import {useDispatch, useSelector} from "react-redux";
-import {useMount} from "../utils";
-
-
+import { useAsync } from "utils/use-async";
+import { useDispatch, useSelector } from "react-redux";
+import { useMount } from "../utils";
 
 export interface AuthForm {
   username: string;
   password: string;
 }
-
 
 export const bootstrapUser = async () => {
   let user = null;
@@ -26,34 +23,33 @@ export const bootstrapUser = async () => {
   return user;
 };
 
-
-export  const AuthProvider= ({ children }: { children: ReactNode }) => {
-  const {error, isLoading, isIdle, isError, run} = useAsync<User | null>();
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const { error, isLoading, isIdle, isError, run } = useAsync<User | null>();
   const dispatch: (...args: unknown[]) => Promise<User> = useDispatch();
 
   useMount(() => {
-    run(dispatch(bootstrap()))
-  })
+    run(dispatch(bootstrap()));
+  });
 
   if (isIdle || isLoading) {
-    return (<div> loading...</div>)
+    return <div> loading...</div>;
   }
 
   if (isError) {
-    return (<div>{error}</div>)
+    return <div>{error}</div>;
   }
-  return (<div>{children}</div>)
-}
+  return <div>{children}</div>;
+};
 
-export const useAuth =() => {
-  const dispatch:(...args:unknown[])=>Promise<User> =useDispatch();
+export const useAuth = () => {
+  const dispatch: (...args: unknown[]) => Promise<User> = useDispatch();
   const user = useSelector(selectUser);
   const login = useCallback(
-    (form:AuthForm)=>dispatch(authStore.login(form)),
-      [dispatch]
+    (form: AuthForm) => dispatch(authStore.login(form)),
+    [dispatch]
   );
 
-  const register=useCallback(
+  const register = useCallback(
     (form: AuthForm) => dispatch(authStore.register(form)),
     [dispatch]
   );
@@ -65,4 +61,4 @@ export const useAuth =() => {
     register,
     logout,
   };
-}
+};

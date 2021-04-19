@@ -102,4 +102,3 @@ export const useAsync = <D>(
     ...state,
   };
 };
-
