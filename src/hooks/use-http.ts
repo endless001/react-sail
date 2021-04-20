@@ -1,6 +1,6 @@
-import {useAuth} from "../context/auth-context";
 import {useCallback} from "react";
 import {http} from "utils/http";
+import {useAuth} from "hooks/use-auth";
 
 export const useHttp = () => {
   const { user } = useAuth();

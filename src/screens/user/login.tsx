@@ -13,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { Copyright } from "components/copyright";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { useAuth } from "context/auth-context";
+import { useAuth } from "hooks/use-auth";
 import { useAsync } from "hooks/use-async";
 import { useDispatch } from "react-redux";
 import {useForm} from "react-hook-form";
@@ -55,7 +55,6 @@ export const LoginScreen = ({
         username:"lq",
         password:"lq"
       };
-      await run(login(values));
     } catch (e) {
       onError(e);
     }

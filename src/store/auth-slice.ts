@@ -2,7 +2,7 @@ import { User } from "types/user";
 import * as auth from "auth-provider";
 import { createSlice } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "store/index";
-import { AuthForm, bootstrapUser } from "context/auth-context";
+import {bootstrapUser} from "hooks/use-auth";
 
 interface State {
   user: User | null;
@@ -26,10 +26,10 @@ const { setUser } = authSlice.actions;
 
 export const selectUser = (state: RootState) => state.auth.user;
 
-export const login = (form: AuthForm) => (dispatch: AppDispatch) =>
+export const login = (form: {username:string,password:string}) => (dispatch: AppDispatch) =>
   auth.login(form).then((user) => dispatch(setUser(user)));
 
-export const register = (form: AuthForm) => (dispatch: AppDispatch) =>
+export const register = (form:  {username:string,password:string}) => (dispatch: AppDispatch) =>
   auth.register(form).then((user) => dispatch(setUser(user)));
 
 export const logout = () => (dispatch: AppDispatch) =>

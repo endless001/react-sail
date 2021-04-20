@@ -5,7 +5,7 @@ import { LoginScreen } from "screens/user/login";
 import { Copyright } from "components/copyright";
 import { RegisterScreen } from "screens/user/register";
 import { IRouteProps } from "routes";
-import {Authenticated} from "../context/authenticated";
+import {Authenticated} from "../utils/authenticated";
 
 const routes: IRouteProps[] = [
   {
