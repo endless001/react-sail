@@ -14,7 +14,7 @@ import { Copyright } from "components/copyright";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useAuth } from "context/auth-context";
-import { useAsync } from "utils/use-async";
+import { useAsync } from "hooks/use-async";
 import { useDispatch } from "react-redux";
 import {useForm} from "react-hook-form";
 
