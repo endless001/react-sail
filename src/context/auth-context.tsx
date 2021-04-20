@@ -2,8 +2,8 @@ import React, { ReactNode, useCallback } from "react";
 import * as auth from "auth-provider";
 import { User } from "types/user";
 import { http } from "utils/http";
-import * as authStore from "store/auth";
-import {  selectUser } from "store/auth";
+import * as authStore from "store/auth-slice";
+import {  selectUser } from "store/auth-slice";
 
 import { useDispatch, useSelector } from "react-redux";
 
