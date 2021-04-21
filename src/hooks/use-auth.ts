@@ -1,10 +1,12 @@
-import {User} from "../types/user";
+import {User} from "types/user";
 import {useDispatch, useSelector} from "react-redux";
-import {selectUser} from "../store/auth-slice";
+import {selectUser} from "store/auth-slice";
 import {useCallback} from "react";
-import * as authStore from "../store/auth-slice";
-import * as auth from "../auth-provider";
-import {http} from "../utils/http";
+import * as authStore from "store/auth-slice";
+import * as auth from "auth-provider";
+import {http} from "utils/http";
+import {LoginForm} from "types/login-form";
+
 
 
 export const bootstrapUser = async () => {
@@ -17,18 +19,16 @@ export const bootstrapUser = async () => {
   return user;
 };
 
-
-
 export const useAuth = () => {
   const dispatch: (...args: unknown[]) => Promise<User> = useDispatch();
   const user = useSelector(selectUser);
   const login = useCallback(
-    (form: { username:string,passwrod:string }) => dispatch(authStore.login(form)),
+    (form: LoginForm) => dispatch(authStore.login(form)),
     [dispatch]
   );
 
   const register = useCallback(
-    (form: { username:string,passwrod:string }) => dispatch(authStore.register(form)),
+    (form: LoginForm) => dispatch(authStore.register(form)),
     [dispatch]
   );
 
