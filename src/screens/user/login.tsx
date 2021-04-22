@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: theme.spacing(25),
     backgroundColor: "#fff",
-    maxHeight: "500px",
+    maxHeight: "510px",
     borderRadius: "5px"
   },
   paper: {

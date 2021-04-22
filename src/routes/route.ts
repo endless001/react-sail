@@ -31,6 +31,7 @@ const routes: IRouteProps[] = [
         component: Authenticated(DashboardScreen),
       },
     ],
+
   },
   {
     path: "*",
