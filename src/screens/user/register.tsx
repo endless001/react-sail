@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: theme.spacing(20),
     backgroundColor: "#fff",
-    maxHeight: "560px",
+    maxHeight: "510px",
     borderRadius: "5px"
   },
   paper: {
@@ -67,18 +67,6 @@ export const RegisterScreen = () => {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
                             />
                         </Grid>
                         <Grid item xs={12}>
