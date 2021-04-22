@@ -18,7 +18,7 @@ import { useDocumentTitle } from "utils";
 
 const useStyles = makeStyles((theme) => ({
   main: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(20),
     backgroundColor: "#fff",
     maxHeight: "550px",
     borderRadius: "5px"

@@ -22,7 +22,7 @@ import {useDocumentTitle} from "utils";
 const useStyles = makeStyles((theme) => ({
 
   main: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(25),
     backgroundColor: "#fff",
     maxHeight: "500px",
     borderRadius: "5px"
