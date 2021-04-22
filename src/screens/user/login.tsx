@@ -21,8 +21,13 @@ import {useDocumentTitle} from "utils";
 
 const useStyles = makeStyles((theme) => ({
 
-  paper: {
+  main: {
     marginTop: theme.spacing(8),
+    backgroundColor: "#fff",
+    maxHeight: "60vh",
+    borderRadius: "5px"
+  },
+  paper: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -50,7 +55,7 @@ export const LoginScreen = ({
 
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container  className={classes.main} component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
