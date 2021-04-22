@@ -2,10 +2,10 @@ import { lazy } from "react";
 import { BasicLayout } from "layouts/basic-layout";
 import { UserLayout } from "layouts/user-layout";
 import { LoginScreen } from "screens/user/login";
-import { Copyright } from "components/copyright";
 import { RegisterScreen } from "screens/user/register";
+import { DashboardScreen } from  "screens/dashboard/index";
 import { IRouteProps } from "routes";
-import {Authenticated} from "../utils/authenticated";
+import { Authenticated } from "../utils/authenticated";
 
 const routes: IRouteProps[] = [
   {
@@ -28,7 +28,7 @@ const routes: IRouteProps[] = [
     children: [
       {
         path: "/",
-        component: Authenticated(Copyright ),
+        component: Authenticated(DashboardScreen),
       },
     ],
   },

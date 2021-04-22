@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Copyright } from "components/copyright";
+import {useDocumentTitle} from "utils";
 
 
 
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const RegisterScreen = () => {
     const classes = useStyles();
+    useDocumentTitle("register");
 
     return (
         <Container component="main" maxWidth="xs">

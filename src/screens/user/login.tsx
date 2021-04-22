@@ -17,8 +17,10 @@ import { useAuth } from "hooks/use-auth";
 import { useAsync } from "hooks/use-async";
 import { useDispatch } from "react-redux";
 import {useForm} from "react-hook-form";
+import {useDocumentTitle} from "utils";
 
 const useStyles = makeStyles((theme) => ({
+
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -44,21 +46,8 @@ export const LoginScreen = ({
   onError: (error: Error) => void;
 }) => {
   const classes = useStyles();
+  useDocumentTitle("login");
 
-  const { login, user } = useAuth();
-  const { run, isLoading } = useAsync(undefined, { throwOnError: true });
-  const dispatch = useDispatch();
-  const handleSubmit = async () => {
-    try {
-      console.log('aaa')
-      var values={
-        username:"lq",
-        password:"lq"
-      };
-    } catch (e) {
-      onError(e);
-    }
-  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -70,7 +59,7 @@ export const LoginScreen = ({
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form className={classes.form} >
           <TextField
             variant="outlined"
             margin="normal"
