@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: theme.spacing(20),
     backgroundColor: "#fff",
-    maxHeight: "550px",
+    maxHeight: "560px",
     borderRadius: "5px"
   },
   paper: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(2),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
@@ -101,7 +101,6 @@ export const RegisterScreen = () => {
                         </Grid>
                     </Grid>
                     <Button
-                        type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
