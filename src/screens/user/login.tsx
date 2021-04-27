@@ -18,6 +18,7 @@ import { useAsync } from "hooks/use-async";
 import { useDispatch } from "react-redux";
 import {useForm} from "react-hook-form";
 import {useDocumentTitle} from "utils";
+import { LoginForm } from "types/login-form";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -53,6 +54,8 @@ export const LoginScreen = ({
   const classes = useStyles();
   useDocumentTitle("login");
 
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<LoginForm>();
+  const onSubmit = handleSubmit(data => console.log(data));
 
   return (
     <Container  className={classes.main} component="main" maxWidth="xs">
@@ -64,27 +67,25 @@ export const LoginScreen = ({
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} >
+        <form className={classes.form} onSubmit={onSubmit} >
           <TextField
+              {...register("username")}
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            label="username"
+            autoComplete="username"
             autoFocus
           />
           <TextField
+              {...register("password")}
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="password"
             label="Password"
             type="password"
-            id="password"
             autoComplete="current-password"
           />
           <FormControlLabel
@@ -96,6 +97,7 @@ export const LoginScreen = ({
             variant="contained"
             color="primary"
             className={classes.submit}
+            type={"submit"}
           >
             Sign In
           </Button>
