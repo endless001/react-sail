@@ -26,6 +26,7 @@ const renderRoutes = (props: IRouteProps) => {
                     <item.component
                       children={item.children}
                       {...props}
+
                     ></item.component>
                   )
                 );

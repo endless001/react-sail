@@ -1,10 +1,16 @@
-import React, { Suspense } from "react";
+import React, {Suspense, useState} from "react";
 import route from "./routes/route";
 import RenderRoutes from "./routes/renderRoutes";
 import { BrowserRouter } from "react-router-dom";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-
+import {ErrorBoundary} from "components/error-boundary";
+import { FullPageErrorFallback } from "components/index";
+import {useMount} from "utils";
+import {useAsync} from "hooks/use-async";
+import {User} from "types/user";
+import {useDispatch} from "react-redux";
+import {bootstrap} from "./store/auth-slice";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -17,8 +23,16 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const App = () => {
+  const { error, isLoading, isIdle, isError, run } = useAsync<User | null>();
+  const dispatch: (...args: unknown[]) => Promise<User> = useDispatch();
+
+  useMount(() => {
+    run(dispatch(bootstrap()));
+  });
+
   const classes = useStyles();
-  return (
+    return (
+      <ErrorBoundary fallbackRender={FullPageErrorFallback}>
     <BrowserRouter>
       <Suspense
         fallback={
@@ -28,9 +42,10 @@ const App = () => {
           </div>
         }
       >
-        <RenderRoutes children={route}></RenderRoutes>
+        <RenderRoutes children={route}  ></RenderRoutes>
       </Suspense>
     </BrowserRouter>
+      </ErrorBoundary>
   );
 };
 

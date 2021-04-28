@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "email": "longqing@qq.com",
+      "password": "$2a$10$WsirEiB7Yy/ZVwSGDGFmMujeXXHpxVQUDTRfHRDtItyU/2Mo78ZzO",
+      "id": 1
+    },
+    {
+      "email": "longqing1@qq.com",
+      "password": "$2a$10$aTLP1A0FkWLro9mUju3CL.BJ/QH2vNcuM8Y2OHCVW0YiossTdSa/q",
+      "id": 2
+    }
+  ]
+}
