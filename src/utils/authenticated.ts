@@ -1,12 +1,10 @@
 import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect'
+import {RootState} from "../store";
 
 
 
 export const Authenticated = connectedRouterRedirect({
     redirectPath: '/user/login',
-    // If selector is true, wrapper will not redirect
-    // For example let's check that state contains user data
-    authenticatedSelector: state => true,
-    // A nice display name for this check
+    authenticatedSelector: (state:RootState) => state.auth.user !== null,
     wrapperDisplayName: 'UserIsAuthenticated'
 })

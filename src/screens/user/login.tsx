@@ -8,6 +8,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import LoadingButton from '@material-ui/lab/LoadingButton';
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { Copyright } from "components/copyright";
@@ -18,6 +19,8 @@ import { useAsync } from "hooks/use-async";
 import { useDispatch } from "react-redux";
 import {useForm} from "react-hook-form";
 import {useDocumentTitle} from "utils";
+import { LoginForm } from "types/login-form";
+import {Snackbar} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -50,12 +53,37 @@ export const LoginScreen = ({
 }: {
   onError: (error: Error) => void;
 }) => {
+  const { login, user } = useAuth();
+  const { run, isLoading } = useAsync(undefined, { throwOnError: true });
+  const [error, setError] = useState<Error | null>(null);
+
   const classes = useStyles();
   useDocumentTitle("login");
 
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<LoginForm>();
+  const onSubmit = handleSubmit( async data =>
+  {
+    try {
+      await run(login(data));
+    } catch (e) {
+      setError(e);
+    }
+  });
 
   return (
     <Container  className={classes.main} component="main" maxWidth="xs">
+      {error?(
+          <Snackbar
+           open={true}
+           message={error}
+           anchorOrigin={{
+             vertical: 'top',
+             horizontal: 'right'
+           }}
+           autoHideDuration={1000}
+          />
+      ):null}
+
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -64,41 +92,41 @@ export const LoginScreen = ({
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} >
+        <form className={classes.form} onSubmit={onSubmit} >
           <TextField
+              {...register("email")}
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
+            label="email"
             autoComplete="email"
             autoFocus
           />
+
           <TextField
+              {...register("password")}
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="password"
             label="Password"
             type="password"
-            id="password"
             autoComplete="current-password"
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
+          <LoadingButton  variant="contained"
+                          fullWidth
+                          loading={isLoading}
+                          color="primary"
+                          className={classes.submit}
+                          type={"submit"}
           >
             Sign In
-          </Button>
+          </LoadingButton>
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">

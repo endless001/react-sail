@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const UserLayout = (props: IRouteProps) => {
-
   const classes = useStyles();
 
   return (
