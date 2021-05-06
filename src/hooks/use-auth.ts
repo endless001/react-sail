@@ -3,18 +3,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectUser} from "store/auth-slice";
 import {useCallback} from "react";
 import * as authStore from "store/auth-slice";
-import * as auth from "auth-provider";
-import {http} from "utils/http";
-import {LoginForm} from "types/login-form";
-
-
+import * as userService from "services/user-service";
+import { http } from "utils/http";
+import { LoginForm } from "types/login-form";
 
 export const bootstrapUser = async () => {
   let user = null;
-  const token = auth.getToken();
+  const token = userService.getToken();
   if (token) {
-    const data = await http("me", { token });
-    user = data.user;
+   // const data = await http("me", { token });
+    user =  { email: "lq", username:"lq"};
   }
   return user;
 };

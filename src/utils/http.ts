@@ -1,5 +1,5 @@
 import qs from "qs";
-import * as auth from "auth-provider";
+import * as userService from "services/user-service";
 
 
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -28,7 +28,7 @@ export const http = async (
   }
   return fetch(`${apiUrl}/${endpoint}`, config).then(async (response) => {
     if (response.status === 401) {
-      await auth.logout();
+      await userService.logout();
       window.location.reload();
       return Promise.reject({ message: "请重新登录" });
     }

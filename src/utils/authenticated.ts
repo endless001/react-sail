@@ -1,7 +1,5 @@
 import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect'
-import {RootState} from "../store";
-
-
+import {RootState} from "store";
 
 export const Authenticated = connectedRouterRedirect({
     redirectPath: '/user/login',

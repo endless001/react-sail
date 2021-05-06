@@ -1,5 +1,5 @@
 import { User } from "types/user";
-import * as auth from "auth-provider";
+import * as userService from "services/user-service";
 import { createSlice } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "store/index";
 import {bootstrapUser} from "hooks/use-auth";
@@ -29,13 +29,16 @@ const { setUser } = authSlice.actions;
 export const selectUser = (state: RootState) => state.auth.user;
 
 export const login = (form: LoginForm) => (dispatch: AppDispatch) =>
-  auth.login(form).then((user) => dispatch(setUser(user)));
+    userService.login(form).then((user) => dispatch(setUser(user)));
 
 export const register = (form:  LoginForm) => (dispatch: AppDispatch) =>
-  auth.register(form).then((user) => dispatch(setUser(user)));
+    userService.register(form).then((user) => dispatch(setUser(user)));
 
 export const logout = () => (dispatch: AppDispatch) =>
-  auth.logout().then(() => dispatch(setUser(null)));
+    userService.logout().then(() => dispatch(setUser(null)));
 
 export const bootstrap = () => (dispatch: AppDispatch) =>
   bootstrapUser().then((user) => dispatch(setUser(user)));
+
+
+
