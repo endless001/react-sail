@@ -23,17 +23,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const App = () => {
-  const { error, isLoading, isIdle, isError, run } = useAsync<User | null>();
-  const dispatch: (...args: unknown[]) => Promise<User> = useDispatch();
-
-  useMount(() => {
-    run(dispatch(bootstrap()));
-  });
 
   const classes = useStyles();
     return (
       <ErrorBoundary fallbackRender={FullPageErrorFallback}>
-    <BrowserRouter>
+      <BrowserRouter>
       <Suspense
         fallback={
           <div className={classes.root}>
@@ -42,10 +36,10 @@ const App = () => {
           </div>
         }
       >
-        <RenderRoutes children={route}  ></RenderRoutes>
+        <RenderRoutes children={route}></RenderRoutes>
       </Suspense>
     </BrowserRouter>
-      </ErrorBoundary>
+    </ErrorBoundary>
   );
 };
 
