@@ -6,11 +6,6 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import {ErrorBoundary} from "components/error-boundary";
 import { FullPageErrorFallback } from "components/index";
-import {useMount} from "utils";
-import {useAsync} from "hooks/use-async";
-import {User} from "types/user";
-import {useDispatch} from "react-redux";
-import {bootstrap} from "./store/auth-slice";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
